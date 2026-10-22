@@ -1,5 +1,5 @@
- [project.scripts]
-  nhanes-no-supervisado = "nhanes_no_supervisado:main"
+[project]
+name = "nhanes-no-supervisado"
 version = "0.1.0"
 description = "Técnicas de aprendizaje no supervisado aplicadas a NHANES"
 readme = "README.md"
@@ -16,9 +16,6 @@ dependencies = [
     "scipy>=1.18.1",
     "seaborn>=0.13.2",
 ]
-
-[project.scripts]
-nhanes-no-supervisado = "nhanes_no_supervisado:main"
 
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]
