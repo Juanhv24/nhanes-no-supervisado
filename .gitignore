@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Datos (se descargan con scripts/descargar_datos.py)
+datos/crudos/*
+!datos/crudos/.gitkeep
+datos/procesados/*
+!datos/procesados/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
