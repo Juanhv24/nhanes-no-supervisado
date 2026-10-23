@@ -6,7 +6,7 @@ from nhanes_no_supervisado.config import ARCHIVO_DEPURADO, RUTA_CRUDOS, SUFIJO
 
 # Variables de interés por módulo: código original de NHANES -> nombre en el proyecto
 VARIABLES = {
-    "DEMO": {"RIDAGEYR": "edad", "RIAGENDR": "sexo"},
+    "DEMO": {"RIDAGEYR": "edad", "RIAGENDR": "sexo", "RIDEXPRG": "embarazo"},
     "BMX": {"BMXWAIST": "cintura_cm", "BMXBMI": "imc"},
     "BPX": {
         "BPXSY1": "sistolica_1",
