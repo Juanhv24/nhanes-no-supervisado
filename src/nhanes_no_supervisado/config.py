@@ -21,7 +21,7 @@ CICLO = "2017-2018"
 SUFIJO = "_J"
 
 # Módulos requeridos (demografía, examen físico, laboratorio y cuestionario)
-MODULOS = ["DEMO", "BMX", "BPX", "GHB", "GLU", "TRIGLY", "HDL", "DIQ"]
+MODULOS = ["DEMO", "BMX", "BPX", "GHB", "GLU", "TRIGLY", "HDL", "DIQ", "SMQ", "FSQ", "HIQ"]
 
 # URL base de descarga; el nombre de cada archivo es <MODULO><SUFIJO>.xpt
 URL_BASE = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles"
@@ -29,6 +29,7 @@ URL_BASE = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles"
 # Carpeta de informes asociada a cada actividad
 CARPETA_ACTIVIDAD = {
     2: "02_clustering",
+    3: "03_correspondencias",
 }
 
 

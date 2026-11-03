@@ -6,7 +6,14 @@ from nhanes_no_supervisado.config import ARCHIVO_DEPURADO, RUTA_CRUDOS, SUFIJO
 
 # Variables de interés por módulo: código original de NHANES -> nombre en el proyecto
 VARIABLES = {
-    "DEMO": {"RIDAGEYR": "edad", "RIAGENDR": "sexo", "RIDEXPRG": "embarazo"},
+    "DEMO": {
+        "RIDAGEYR": "edad",
+        "RIAGENDR": "sexo",
+        "RIDEXPRG": "embarazo",
+        "DMDEDUC2": "educacion",
+        "RIDRETH3": "raza_etnia",
+        "INDFMPIR": "ingreso_pobreza",
+    },
     "BMX": {"BMXWAIST": "cintura_cm", "BMXBMI": "imc"},
     "BPX": {
         "BPXSY1": "sistolica_1",
@@ -19,6 +26,9 @@ VARIABLES = {
     "TRIGLY": {"LBXTR": "trigliceridos_mgdl"},
     "HDL": {"LBDHDD": "hdl_mgdl"},
     "DIQ": {"DIQ010": "diabetes_dx"},
+    "SMQ": {"SMQ020": "fumo_100", "SMQ040": "fuma_actual"},
+    "FSQ": {"FSDAD": "seguridad_alimentaria"},
+    "HIQ": {"HIQ011": "seguro_medico"},
 }
 
 # El formato XPT almacena los ceros como 5.4e-79, por ende todo valor menor a este umbral es cero

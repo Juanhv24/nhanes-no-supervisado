@@ -7,8 +7,8 @@ del curso sobre una misma base de datos: la Encuesta Nacional de Examen de Salud
 
 | Actividad | Técnica | Notebook | Estado |
 |---|---|---|---|
-| 2 | Clustering con modelo de mezclas gaussianas (GMM) | `notebooks/nhanes.ipynb` | Completa |
-| 3 | Análisis de correspondencias | — | Pendiente |
+| 2 | Clustering con modelo de mezclas gaussianas (GMM) | `notebooks/02_clustering.ipynb` | Completa |
+| 3 | Análisis de correspondencias simple y múltiple | `notebooks/03_correspondencias.ipynb` | En curso |
 | 4 | Análisis factorial | — | Pendiente |
 
 ## Actividad 2: perfiles de riesgo cardiometabólico
@@ -65,7 +65,8 @@ nhanes-no-supervisado/
 │   └── 02_clustering/
 │       └── figuras/      # figuras generadas por el notebook
 ├── notebooks/
-│   └── nhanes.ipynb      # análisis completo de la actividad 2
+│   ├── 02_clustering.ipynb         # actividad 2: clustering con GMM
+│   └── 03_correspondencias.ipynb   # actividad 3: correspondencias simple y múltiple
 ├── scripts/
 │   └── descargar_datos.py
 └── src/nhanes_no_supervisado/
@@ -84,7 +85,7 @@ uv sync
 uv run python scripts/descargar_datos.py
 ```
 
-Después se abre `notebooks/nhanes.ipynb` con el kernel del entorno `.venv` del proyecto y se
+Después se abre el notebook de la actividad (por ejemplo, `notebooks/02_clustering.ipynb`) con el kernel del entorno `.venv` del proyecto y se
 ejecutan todas las celdas.
 
 ### En Google Colab
