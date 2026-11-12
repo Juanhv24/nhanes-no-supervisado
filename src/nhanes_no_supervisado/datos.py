@@ -20,15 +20,29 @@ VARIABLES = {
         "BPXSY2": "sistolica_2",
         "BPXSY3": "sistolica_3",
         "BPXSY4": "sistolica_4",
+        "BPXDI1": "diastolica_1",
+        "BPXDI2": "diastolica_2",
+        "BPXDI3": "diastolica_3",
+        "BPXDI4": "diastolica_4",
     },
     "GHB": {"LBXGH": "hba1c_pct"},
-    "GLU": {"LBXGLU": "glucosa_mgdl"},
+    # El peso de la submuestra en ayunas (WTSAF2YR) también aparece en INS y TRIGLY;
+    # se toma solo de GLU para no duplicar la columna en la unión
+    "GLU": {"LBXGLU": "glucosa_mgdl", "WTSAF2YR": "peso_ayuno"},
     "TRIGLY": {"LBXTR": "trigliceridos_mgdl"},
     "HDL": {"LBDHDD": "hdl_mgdl"},
     "DIQ": {"DIQ010": "diabetes_dx"},
     "SMQ": {"SMQ020": "fumo_100", "SMQ040": "fuma_actual"},
     "FSQ": {"FSDAD": "seguridad_alimentaria"},
     "HIQ": {"HIQ011": "seguro_medico"},
+    "INS": {"LBXIN": "insulina_uuml"},
+    "TCHOL": {"LBXTC": "colesterol_total_mgdl"},
+    "BIOPRO": {
+        "LBXSATSI": "alt_ul",
+        "LBXSGTSI": "ggt_ul",
+        "LBXSUA": "acido_urico_mgdl",
+    },
+    "HSCRP": {"LBXHSCRP": "pcr_mgl"},
 }
 
 # El formato XPT almacena los ceros como 5.4e-79, por ende todo valor menor a este umbral es cero
@@ -63,10 +77,15 @@ def cargar_crudos() -> pd.DataFrame:
             continue
         base = base.merge(cargar_modulo(modulo), on="SEQN", how="left", validate="one_to_one")
 
-    # Presión sistólica como promedio de las lecturas disponibles
-    lecturas = [f"sistolica_{i}" for i in range(1, 5)]
-    base["sistolica_mmhg"] = base[lecturas].mean(axis=1, skipna=True)
-    base = base.drop(columns=lecturas)
+    # Presión sistólica y diastólica como promedio de las lecturas disponibles.
+    # Una diastólica de 0 mmHg se registra cuando los ruidos se escuchan hasta el cero y no
+    # corresponde a la presión real, por lo que se trata como faltante
+    for presion in ["sistolica", "diastolica"]:
+        lecturas = [f"{presion}_{i}" for i in range(1, 5)]
+        if presion == "diastolica":
+            base[lecturas] = base[lecturas].mask(base[lecturas] == 0)
+        base[f"{presion}_mmhg"] = base[lecturas].mean(axis=1, skipna=True)
+        base = base.drop(columns=lecturas)
 
     return base.set_index("SEQN")
 
